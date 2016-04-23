@@ -1,26 +1,66 @@
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
   <title>bpmn-js modeler demo</title>
+  <!-- Custom Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
   <link rel="stylesheet" href="css/diagram-js.css" />
-  <link rel="stylesheet" href="vendor/bpmn-font/css/bpmn-embedded.css" />
+  <link rel="stylesheet" href="css/bpmn-embedded.css" />
   <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 </head>
 <body>
-  <div class="content" id="js-drop-zone">
-
-    <div class="message error">
-      <div class="note">
-        <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
-
-        <div class="details">
-          <span>cause of the problem</span>
-          <pre></pre>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Talk Modeling</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projeto <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Exportar</a></li>
+              <li><a href="#">Abrir</a></li>
+              <li><a href="#">Configurações</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Entidades</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <!-- ./menu -->
+  <div class="col-md-2" id="list-talks">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        Conversas 
+        <div class="pull-right">
+          <button class="btn btn-success btn-xs btn-add-talk"><i class="fa fa-plus"></i></button>
         </div>
       </div>
+      <!-- List group -->
+      <div class="list-group"></div>
     </div>
-
-    <div class="canvas" id="js-canvas"></div>
+  </div> 
+  <div class="col-md-10 col-md-offset-2" id="content-modeler">
+      <div class="content" id="js-drop-zone">
+        <div class="canvas" id="js-canvas"></div>
+    </div>
   </div>
 
   <!--
@@ -40,5 +80,39 @@
     </li>
   </ul>-->
 
-  <script src="index.js"></script>
+  <div class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <p>One fine body…</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+        
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- BPMNModeler -->
+    <script src="js/bpmn-modeler.min.js"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/bootstrap-dialog.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+
+    <!-- BPMN script -->
+    <script src="js/app.js"></script>
+  
 </html>

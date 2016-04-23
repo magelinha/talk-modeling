@@ -66,14 +66,17 @@
     						project.name = nameProject;
     						project.talks = [
     							{
-    								name: "landing",
-    								xml: landing
+                                    id: 1,
+    								name: "Landing",
+    								xml: landing,
+                                    isDefault: true
     							}
     						];
     						project.entities = [];
 
     						//Insere o projeto no localStorage
-    						localStorage.setItem('current-project', JSON.stringyif(project));
+    						localStorage.setItem('current-project', JSON.stringify(project));
+                            window.location = 'modeler.html';
 
     					}else{
     						BootstrapDialog.alert({
