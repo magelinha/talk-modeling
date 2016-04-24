@@ -35,13 +35,22 @@
 		return max+1;
 	}
 
+	var checkUniqueName = function(element){
+		var finded = _.find(project.talks, function(el){ 
+			return el.id != element.id && el.name.toUpperCase() == element.name.toUpperCase();
+		});
+
+		if(finded) return false;
+		return true;
+	}
+
 	var fillListTalks = function(){
 		console.log(project.talks);
 		listTaks.empty();
 		project.talks.forEach(function(element){
 			listTaks
 			.append(
-				$('<a href="#" data-id="' + element.id + '" class="list-group-item'+ (element.isDefault ? ' active' : '') +'">' + element.name + '</a>')
+				$('<a href="#" data-id="' + element.id + '" class="list-group-item link-talk'+ (element.isDefault ? ' active' : '') +'">' + element.name + '</a>')
 				.append(
 					'<div class="pull-right">\
 						<button class="btn btn-info btn-xs btn-edit-talk"><i class="fa fa-pencil"></i></button>\
@@ -87,7 +96,20 @@
     				action: function(dialog){
     					var nameTalk = dialog.$modalContent.find('#name-talk').val();
     					var isDefault = dialog.$modalContent.find('#start-talk').is(':checked');
+    					
+    					//Verifica se não está vazio o campo
     					if(nameTalk.length){
+    						
+    						//Verifica se já existe uma conversa com o nome inserido
+    						var verifyName = _.find(project.talks, function(el){return el.name.toUpperCase() == nameTalk.toUpperCase() });
+    						if(verifyName != undefined){
+    							BootstrapDialog.alert({
+	    							message: "Já existe uma conversa com esse nome.",
+	    							type: BootstrapDialog.TYPE_DANGER
+	    						});
+	    						return;
+    						}
+
     						var newTalk = 
     							{
                                     id: setId(),
@@ -103,9 +125,9 @@
     						localStorage.setItem('current-project', JSON.stringify(project));
     						fillListTalks();
     						dialog.close();
-    					}else{
+    					} else{
     						BootstrapDialog.alert({
-    							message: "Insira o nome da conversa",
+    							message: "Insira o nome da conversa.",
     							type: BootstrapDialog.TYPE_DANGER
     						});
     					}
@@ -154,7 +176,12 @@
     							message: "O nome da conversa é obrigatório",
     							type: BootstrapDialog.TYPE_DANGER
     						});
-	    				}else{
+	    				} else if(!checkUniqueName(element)){
+	    					BootstrapDialog.alert({
+    							message: "Já existe uma conversa com esse nome",
+    							type: BootstrapDialog.TYPE_DANGER
+    						});
+	    				} else{
 	    					project.talks.forEach(function(el, index){
 	    						console.log(el,index);
 	    						if(element.id == el.id){
@@ -211,6 +238,7 @@
 	//Update
 	$(document).on('click', '.btn-edit-talk', function(e){
 		e.preventDefault();
+		e.stopPropagation();
 		var id = parseInt($(this).parents('a').data('id'));
 
 		updateTalk(_.find(project.talks, function(el){ return el.id == id }));
@@ -219,9 +247,31 @@
 	//Delete
 	$(document).on('click', '.btn-remove-talk', function(e){
 		e.preventDefault();
+		e.stopPropagation();
 		var id = parseInt($(this).parents('a').data('id'));
 		removeTalk(_.find(project.talks, function(el){ return el.id == id }));
 	});
+
+	/******** Abrir conversa **************/
+	$(document).on('click', '.link-talk', function(e){
+		e.preventDefault();
+		var id = parseInt($(this).parents('a').data('id'));
+		var element = _.find(project.talks, function(el){ return el.id == id });
+		importXML(element.xml);	
+	});
+
+	/******** Importar e Exportar projeto **************/
+
+	/******** CRUD de Entidades **************/
+	$('#crud-entities').click(function(e){
+		e.preventDefault();
+		BootstrapDialog.alert({
+			title: "Cadastro de Entidades",
+			message: $('<div />').load('crud-entities.html'),
+			
+		})		
+	})
+	/******** Update on Renderer **************/	
 
 })(window.BpmnJS, jQuery);
 
