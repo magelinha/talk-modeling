@@ -176,7 +176,7 @@ aside {
 #background-header {
     position: absolute;
     top: 100px;
-    z-index: 1;
+    z-index: -1;
     -webkit-filter: blur(2px);
     -moz-filter: blur(2px);
     -o-filter: blur(2px);

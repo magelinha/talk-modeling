@@ -559,3 +559,7 @@ svg.new-parent {
 .djs-tooltip-error:hover {
   opacity: 1;
 }
+
+.system-talk {
+  stroke: #FF8C00;
+}

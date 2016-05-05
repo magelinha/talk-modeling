@@ -86,6 +86,7 @@
 .bpmn-icon-subprocess-collapsed:before { content: '\e81f'; } /* '' */
 .bpmn-icon-subprocess-expanded:before { content: '\e820'; } /* '' */
 .bpmn-icon-task:before { content: '\e821'; } /* '' */
+.bpmn-icon-task-system:before { content: '\e821'; } /* '' */
 .bpmn-icon-end-event-error:before { content: '\e822'; } /* '' */
 .bpmn-icon-intermediate-event-catch-escalation:before { content: '\e823'; } /* '' */
 .bpmn-icon-intermediate-event-catch-timer:before { content: '\e824'; } /* '' */
