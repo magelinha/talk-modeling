@@ -64,12 +64,21 @@
     						//Cria o projeto
     						var project = new Object();
     						project.name = nameProject;
+                            project.currentIdElements = 1; //Id do único objeto presente na tela
+                            project.currentIdTalks = 1; //Id do único objeto presente na tela
     						project.talks = [
     							{
                                     id: 1,
     								name: "Landing",
     								xml: landing,
-                                    isDefault: true
+                                    isDefault: true,
+                                    elements: [
+                                        {
+                                            id: 1, 
+                                            type: 'start', 
+                                            connections: []
+                                        }
+                                    ]
     							}
     						];
     						project.entities = [];
